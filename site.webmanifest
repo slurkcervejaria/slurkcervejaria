@@ -1,0 +1,14 @@
+{
+  "name": "slürk BEER",
+  "short_name": "slürk",
+  "description": "Cervejaria artesanal — chopes e cervejas direto da fábrica.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#F2EEE9",
+  "theme_color": "#823B00",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
