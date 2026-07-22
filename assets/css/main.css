@@ -1019,7 +1019,99 @@ fieldset.form-field legend {
 .age-note { font-size: 0.78rem; opacity: 0.85; }
 
 /* --------------------------------------------------------------------------
-   20. Página header (interno)
+   20. Beer loader (tela de carregamento)
+   -------------------------------------------------------------------------- */
+#beer-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  background: #1C1710;
+  font-family: var(--font-display);
+  transition: opacity 0.5s ease;
+}
+#beer-loader.done { opacity: 0; pointer-events: none; }
+
+.bl-logo {
+  position: relative;
+  width: min(310px, 56vw);
+  aspect-ratio: 618 / 904;
+  overflow: hidden;
+  -webkit-mask-image: url('../img/symbol-brown.png');
+  mask-image: url('../img/symbol-brown.png');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+.bl-ghost { position: absolute; inset: 0; background: rgba(237, 230, 98, 0.14); }
+.bl-liquid {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 100%;
+  animation: bl-fill 4s ease-in-out infinite;
+}
+.bl-beer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #F7C437 0%, #EDA921 45%, #D88A12 100%);
+}
+.bl-wave { position: absolute; left: 0; width: 200%; }
+.bl-wave-beer { top: -34px; height: 40px; animation: bl-wave 2.6s linear infinite; }
+.bl-wave-foam { top: -46px; height: 44px; animation: bl-wave 3.8s linear infinite reverse; opacity: 0.95; }
+.bl-bubble {
+  position: absolute;
+  bottom: -12px;
+  border-radius: 50%;
+  background: rgba(255, 245, 200, 0.7);
+  animation: bl-bubble linear infinite;
+}
+.bl-text {
+  color: var(--yellow);
+  font-size: 22px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+}
+.bl-text::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  text-align: left;
+  animation: bl-dots 1.6s steps(1) infinite;
+}
+
+@keyframes bl-fill {
+  0% { transform: translateY(103%); opacity: 1; }
+  78% { transform: translateY(0%); opacity: 1; }
+  92% { transform: translateY(0%); opacity: 1; }
+  100% { transform: translateY(0%); opacity: 0; }
+}
+@keyframes bl-wave { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes bl-bubble {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: translateY(-440px) scale(1.1); opacity: 0; }
+}
+@keyframes bl-dots {
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bl-liquid, .bl-wave, .bl-bubble { animation: none; }
+  .bl-liquid { transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   21. Página header (interno)
    -------------------------------------------------------------------------- */
 .page-hero {
   background: var(--brown);
