@@ -1,5 +1,5 @@
 /** Cardápio: busca, filtro por categoria, ordenação e renderização da grade. */
-import { PRODUCTS, CATEGORIES } from '../data/products.js';
+import { DRINKS, CATEGORIES } from '../data/products.js';
 import { productCardHtml, initReveal } from '../modules/ui.js';
 
 const grid = document.getElementById('menu-grid');
@@ -11,12 +11,12 @@ const resultsCount = document.getElementById('results-count');
 
 const state = { query: '', category: 'all', sort: 'featured' };
 
+const minPrice = (d) => Math.min(...d.variants.map((v) => v.price));
 const SORTERS = {
   featured: (a, b) => Number(b.featured) - Number(a.featured),
-  'price-asc': (a, b) => a.price - b.price,
-  'price-desc': (a, b) => b.price - a.price,
+  'price-asc': (a, b) => minPrice(a) - minPrice(b),
+  'price-desc': (a, b) => minPrice(b) - minPrice(a),
   name: (a, b) => a.name.localeCompare(b.name, 'pt-BR'),
-  abv: (a, b) => (b.abv ?? -1) - (a.abv ?? -1),
 };
 
 function normalize(text) {
@@ -25,11 +25,11 @@ function normalize(text) {
 
 function apply() {
   const query = normalize(state.query.trim());
-  const list = PRODUCTS.filter((p) => {
-    const inCategory = state.category === 'all' || p.category === state.category;
+  const list = DRINKS.filter((d) => {
+    const inCategory = state.category === 'all' || d.category === state.category;
     const inQuery =
       !query ||
-      normalize(`${p.name} ${p.style} ${p.description}`).includes(query);
+      normalize(`${d.name} ${d.tagline} ${d.description}`).includes(query);
     return inCategory && inQuery;
   }).sort(SORTERS[state.sort] ?? SORTERS.featured);
 
@@ -37,8 +37,8 @@ function apply() {
   emptyState.hidden = list.length > 0;
   resultsCount.textContent =
     list.length === 0
-      ? 'Nenhum produto encontrado'
-      : `${list.length} ${list.length === 1 ? 'produto' : 'produtos'}`;
+      ? 'Nenhuma bebida encontrada'
+      : `${list.length} ${list.length === 1 ? 'bebida' : 'bebidas'}`;
   initReveal(grid);
 }
 

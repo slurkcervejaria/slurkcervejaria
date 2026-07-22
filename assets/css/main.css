@@ -481,6 +481,28 @@ button { font-family: inherit; }
   color: var(--ink-soft);
   font-weight: 500;
 }
+.size-toggle {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+.size-btn {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--brown);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--brown);
+  font: inherit;
+  font-weight: 700;
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  min-height: 44px;
+}
+.size-btn:hover { background: var(--yellow-soft); }
+.size-btn[aria-pressed="true"] { background: var(--brown); color: var(--cream); }
+
 .product-card__footer {
   display: flex;
   align-items: center;

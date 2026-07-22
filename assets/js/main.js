@@ -3,7 +3,7 @@
  * Carregado em todas as páginas com type="module" (deferido por padrão).
  */
 import { getCount } from './modules/cart.js';
-import { initReveal, initAddToCartButtons } from './modules/ui.js';
+import { initReveal, initAddToCartButtons, initSizeToggles } from './modules/ui.js';
 
 /* Navegação mobile */
 function initNav() {
@@ -52,4 +52,5 @@ initNav();
 renderCartCount();
 initReveal();
 initAddToCartButtons();
+initSizeToggles();
 document.addEventListener('cart:changed', renderCartCount);
