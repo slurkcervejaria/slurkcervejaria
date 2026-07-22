@@ -61,6 +61,19 @@ Tipografia: **Archivo Black** (display, alinhada ao peso do logo) e **Archivo** 
 - **Acessibilidade**: HTML semântico, skip link, `aria-current`, `aria-live` (toast/contadores), labels e mensagens de erro por campo, alvos de toque ≥ 44px, `prefers-reduced-motion`.
 - **Performance**: fontes com `preload`, imagens com `loading="lazy"` + dimensões explícitas (sem CLS), SVGs vetoriais leves para produtos, CSS único e sem dependências externas.
 
+## Painel administrativo (`/admin/`)
+
+SPA em vanilla JS acessível pelo link "Admin" no rodapé. No primeiro acesso o painel pede a criação de uma senha (hash SHA-256 via WebCrypto). Seções:
+
+- **Pedidos** — pedidos do checkout do site entram automaticamente; mudança de status (novo → confirmado → entregue → recolhido / cancelado), criação manual, emissão de **nota de pedido** numerada e imprimível (documento interno; NF-e oficial exige integração com a SEFAZ).
+- **Contratos** — contrato de locação de chopeira gerado do pedido ou avulso, com **assinatura eletrônica desenhada na tela** (canvas), status rascunho/assinado e impressão com as assinaturas.
+- **Checklists** — controle de **entrega** e de **busca** da chopeira anexado ao pedido, com responsável, data, observações e impressão.
+- **Clientes / Fornecedores** — cadastros CRUD.
+- **Financeiro** — lançamento das **notas de compra dos barris** por fornecedor; KPIs de receita, custo, **lucro dos aluguéis** e margem; gráficos SVG comparando **custo médio × preço de venda** por barril, lucro por barril e receita×custo×lucro mensal.
+- **Configurações** — troca de senha, backup/restauração em JSON e dados de demonstração.
+
+⚠️ Os dados do painel vivem no `localStorage` do navegador (o contrato de dados em `assets/js/admin/store.js` espelha uma API REST para migração futura). O login client-side é uma barreira de acesso para uso interno — para segurança real (multiusuário, dados sensíveis), migre para um backend autenticado. Faça backups pela aba Configurações.
+
 ## Configuração pendente (produção)
 
 - Trocar o domínio placeholder `slurkbeer.com.br` (canonical, OG, sitemap, robots).

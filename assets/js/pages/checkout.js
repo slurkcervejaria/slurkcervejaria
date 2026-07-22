@@ -72,6 +72,19 @@ phoneInput.addEventListener('input', () => {
 async function submitOrder(order) {
   // await fetch('/api/orders', { method: 'POST', body: JSON.stringify(order) })
   sessionStorage.setItem(ORDER_KEY, JSON.stringify(order));
+
+  // Registra na fila de pedidos lida pelo painel admin (mesmo navegador).
+  try {
+    const all = JSON.parse(localStorage.getItem('slurk-orders')) ?? [];
+    all.unshift({
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
+      status: 'novo',
+      ...order,
+    });
+    localStorage.setItem('slurk-orders', JSON.stringify(all));
+  } catch {
+    /* sem storage disponível */
+  }
 }
 
 form.addEventListener('submit', async (e) => {

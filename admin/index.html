@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin — slürk BEER</title>
+  <meta name="description" content="Painel administrativo da slürk BEER.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#823B00">
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png">
+  <link rel="preload" href="../assets/fonts/archivo-black-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+  <!-- Login / primeiro acesso -->
+  <div id="login-screen" class="login-screen" hidden>
+    <form id="login-form" class="login-card" novalidate>
+      <img src="../assets/img/logo-full.png" alt="slürk BEER" width="1196" height="544">
+      <h1 id="login-title">Acesso restrito</h1>
+      <div class="form-grid admin-form">
+        <div class="form-field">
+          <label for="login-password" id="login-password-label">Senha</label>
+          <input type="password" id="login-password" autocomplete="current-password" required>
+          <span class="error-msg" role="alert"></span>
+        </div>
+        <div class="form-field" id="login-confirm-field" hidden>
+          <label for="login-confirm">Confirme a senha</label>
+          <input type="password" id="login-confirm" autocomplete="new-password">
+          <span class="error-msg" role="alert"></span>
+        </div>
+      </div>
+      <button type="submit" class="btn btn--block btn--lg" style="margin-top: var(--space-4);" id="login-submit">Entrar</button>
+      <p class="hint-box" id="login-hint">Painel de uso interno. Os dados ficam armazenados neste navegador; faça backups em Configurações.</p>
+    </form>
+  </div>
+
+  <!-- Aplicação -->
+  <div id="admin-app" class="admin-app">
+    <header class="admin-topbar">
+      <a href="../index.html" aria-label="Ver site">
+        <img src="../assets/img/logo-badge.png" alt="slürk" width="1380" height="656">
+      </a>
+      <strong style="font-family: var(--font-display); letter-spacing: 0.04em;">PAINEL ADMIN</strong>
+      <button type="button" class="btn btn--outline-light" id="logout-btn">Sair</button>
+    </header>
+
+    <nav class="admin-nav" aria-label="Seções do painel">
+      <a href="#pedidos">Pedidos</a>
+      <a href="#contratos">Contratos</a>
+      <a href="#clientes">Clientes</a>
+      <a href="#fornecedores">Fornecedores</a>
+      <a href="#financeiro">Financeiro</a>
+      <a href="#config">Configurações</a>
+    </nav>
+
+    <main class="admin-main" id="view" aria-live="polite"></main>
+  </div>
+
+  <!-- Modal genérico -->
+  <div id="admin-modal" class="admin-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="admin-modal__box">
+      <div class="admin-modal__head">
+        <h2 id="modal-title"></h2>
+        <button type="button" class="admin-modal__close" aria-label="Fechar">×</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Área de impressão (notas, contratos, checklists) -->
+  <div id="print-root" aria-hidden="true"></div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+    <span class="toast__msg"></span>
+  </div>
+
+  <script type="module" src="../assets/js/admin/app.js"></script>
+</body>
+</html>
