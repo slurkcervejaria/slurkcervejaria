@@ -35,35 +35,49 @@ export function initReveal(root = document) {
   els.forEach((el) => observer.observe(el));
 }
 
-/** Gera o markup de um card de produto. */
-export function productCardHtml(product) {
-  const meta = [
-    product.volume,
-    product.abv != null ? `${String(product.abv).replace('.', ',')}% ABV` : null,
-    product.ibu != null ? `${product.ibu} IBU` : null,
-  ].filter(Boolean);
-
+/** Gera o markup de um card de bebida com seletor de volume (barril 30L/50L). */
+export function productCardHtml(drink) {
+  const first = drink.variants[0];
   return `
     <article class="product-card reveal">
       <div class="product-card__media">
-        <img src="${product.image}" alt="Ilustração de ${escapeHtml(product.name)}" width="600" height="600" loading="lazy" decoding="async">
+        <img src="${drink.image}" alt="Ilustração de ${escapeHtml(drink.name)}" width="600" height="600" loading="lazy" decoding="async">
       </div>
       <div class="product-card__body">
         <div class="product-card__tags">
-          <span class="tag">${escapeHtml(product.style)}</span>
+          <span class="tag">${escapeHtml(drink.tagline)}</span>
         </div>
-        <h3 class="product-card__name">${escapeHtml(product.name)}</h3>
-        <p class="product-card__desc">${escapeHtml(product.description)}</p>
-        <p class="product-card__meta">${meta.map((m) => `<span>${escapeHtml(m)}</span>`).join('')}</p>
+        <h3 class="product-card__name">${escapeHtml(drink.name)}</h3>
+        <p class="product-card__desc">${escapeHtml(drink.description)}</p>
+        <div class="size-toggle" role="group" aria-label="Volume do barril de ${escapeHtml(drink.name)}">
+          ${drink.variants
+            .map(
+              (v, i) =>
+                `<button type="button" class="size-btn" aria-pressed="${i === 0}" data-variant="${v.id}" data-price="${v.price}">Barril ${escapeHtml(v.volume)}</button>`,
+            )
+            .join('')}
+        </div>
         <div class="product-card__footer">
-          <span class="product-card__price">${formatPrice(product.price)}</span>
-          <button type="button" class="btn btn--yellow" data-add-to-cart="${product.id}">
+          <span class="product-card__price" aria-live="polite">${formatPrice(first.price)}</span>
+          <button type="button" class="btn btn--yellow" data-add-to-cart="${first.id}">
             Adicionar
-            <span class="visually-hidden">${escapeHtml(product.name)} ao carrinho</span>
+            <span class="visually-hidden">${escapeHtml(drink.name)} ao carrinho</span>
           </button>
         </div>
       </div>
     </article>`;
+}
+
+/** Delegação: troca de volume (30L/50L) dentro dos cards. */
+export function initSizeToggles() {
+  document.addEventListener('click', (event) => {
+    const btn = event.target.closest('.size-btn');
+    if (!btn) return;
+    const card = btn.closest('.product-card');
+    card.querySelectorAll('.size-btn').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    card.querySelector('.product-card__price').textContent = formatPrice(Number(btn.dataset.price));
+    card.querySelector('[data-add-to-cart]').dataset.addToCart = btn.dataset.variant;
+  });
 }
 
 /** Delegação de clique para todos os botões "adicionar ao carrinho" da página. */

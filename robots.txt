@@ -3,5 +3,6 @@ Allow: /
 Disallow: /carrinho.html
 Disallow: /checkout.html
 Disallow: /obrigado.html
+Disallow: /admin/
 
 Sitemap: https://slurkbeer.com.br/sitemap.xml

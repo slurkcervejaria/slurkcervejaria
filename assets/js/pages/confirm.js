@@ -2,7 +2,7 @@
 import { formatPrice, escapeHtml } from '../modules/format.js';
 
 /* Número oficial de pedidos da cervejaria (formato internacional, sem símbolos) */
-const WHATSAPP_NUMBER = '5511999990000';
+const WHATSAPP_NUMBER = '5531973265982';
 
 const ORDER_KEY = 'slurk-last-order';
 const recapEl = document.getElementById('order-recap');
@@ -21,7 +21,7 @@ try {
   order = null;
 }
 
-if (order?.items?.length) {
+if (order && order.items && order.items.length) {
   recapEl.innerHTML = `
     <h2>Resumo do pedido</h2>
     <ul>
@@ -34,7 +34,7 @@ if (order?.items?.length) {
       <li><span><strong>Total</strong></span><strong>${formatPrice(order.total)}</strong></li>
     </ul>
     <p><strong>Entrega:</strong> ${escapeHtml(order.customer.address)}<br>
-    <strong>Pagamento:</strong> ${escapeHtml(PAYMENT_LABELS[order.payment] ?? order.payment)}
+    <strong>Pagamento:</strong> ${escapeHtml(PAYMENT_LABELS[order.payment] || order.payment)}
     ${order.notes ? `<br><strong>Observações:</strong> ${escapeHtml(order.notes)}` : ''}</p>`;
 
   const lines = [
@@ -47,7 +47,7 @@ if (order?.items?.length) {
     `Nome: ${order.customer.name}`,
     `Telefone: ${order.customer.phone}`,
     `Endereço: ${order.customer.address}`,
-    `Pagamento: ${PAYMENT_LABELS[order.payment] ?? order.payment}`,
+    `Pagamento: ${PAYMENT_LABELS[order.payment] || order.payment}`,
   ];
   if (order.notes) lines.push(`Observações: ${order.notes}`);
 

@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contato — WhatsApp, Localização e Horários | slürk BEER</title>
-  <meta name="description" content="Fale com a cervejaria slürk: WhatsApp, Instagram, Facebook, endereço na Vila Madalena e horários de funcionamento.">
+  <meta name="description" content="Fale com a cervejaria slürk: WhatsApp, Instagram, Facebook, endereço em João Monlevade - MG e horários de funcionamento.">
   <link rel="canonical" href="https://slurkbeer.com.br/contato.html">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="slürk BEER">
   <meta property="og:title" content="Contato — WhatsApp, Localização e Horários | slürk BEER">
-  <meta property="og:description" content="Fale com a cervejaria slürk: WhatsApp, Instagram, Facebook, endereço na Vila Madalena e horários de funcionamento.">
+  <meta property="og:description" content="Fale com a cervejaria slürk: WhatsApp, Instagram, Facebook, endereço em João Monlevade - MG e horários de funcionamento.">
   <meta property="og:url" content="https://slurkbeer.com.br/contato.html">
   <meta property="og:image" content="https://slurkbeer.com.br/assets/img/logo-badge.png">
   <meta property="og:locale" content="pt_BR">
@@ -34,6 +34,52 @@
   </script>
 </head>
 <body>
+  <div id="beer-loader" role="status" aria-label="Carregando o site da slürk">
+    <div class="bl-logo">
+      <div class="bl-ghost"></div>
+      <div class="bl-liquid">
+        <div class="bl-beer"></div>
+        <svg class="bl-wave bl-wave-beer" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,35 C100,10 200,10 300,35 C400,60 500,60 600,35 C700,10 800,10 900,35 C1000,60 1100,60 1200,35 L1200,60 L0,60 Z" fill="#F7C437"></path></svg>
+        <svg class="bl-wave bl-wave-foam" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,35 C100,12 200,12 300,35 C400,58 500,58 600,35 C700,12 800,12 900,35 C1000,58 1100,58 1200,35 L1200,60 L0,60 Z" fill="#FDF3D3"></path></svg>
+        <span class="bl-bubble" style="left:14%; width:9px; height:9px; animation-duration:3.1s;"></span>
+        <span class="bl-bubble" style="left:32%; width:6px; height:6px; animation-duration:2.4s; animation-delay:0.6s;"></span>
+        <span class="bl-bubble" style="left:48%; width:11px; height:11px; animation-duration:3.6s; animation-delay:1.1s;"></span>
+        <span class="bl-bubble" style="left:61%; width:7px; height:7px; animation-duration:2.8s; animation-delay:1.7s;"></span>
+        <span class="bl-bubble" style="left:74%; width:10px; height:10px; animation-duration:3.3s; animation-delay:0.3s;"></span>
+        <span class="bl-bubble" style="left:86%; width:6px; height:6px; animation-duration:2.2s; animation-delay:1.4s;"></span>
+        <span class="bl-bubble" style="left:24%; width:5px; height:5px; animation-duration:2.9s; animation-delay:2.1s;"></span>
+        <span class="bl-bubble" style="left:55%; width:5px; height:5px; animation-duration:2.5s; animation-delay:0.9s;"></span>
+      </div>
+    </div>
+    <div class="bl-text">Carregando</div>
+  </div>
+  <noscript><style>#beer-loader { display: none; }</style></noscript>
+  <script>
+    // Beer loader: aparece na primeira visita da sessão e some quando a
+    // página carrega (mínimo de 1,2s para a animação ser percebida).
+    // Para exibir em toda navegação, remova o bloco do sessionStorage.
+    // Para esconder manualmente (ex.: fim de um fetch): hideBeerLoader()
+    (function () {
+      var el = document.getElementById('beer-loader');
+      var shownAt = Date.now();
+      try {
+        if (sessionStorage.getItem('slurk-visited')) { el.remove(); return; }
+        sessionStorage.setItem('slurk-visited', '1');
+      } catch (e) { /* sem storage: mostra normalmente */ }
+      function hide() {
+        if (!document.getElementById('beer-loader')) return;
+        var wait = Math.max(0, 1200 - (Date.now() - shownAt));
+        setTimeout(function () {
+          el.classList.add('done');
+          setTimeout(function () { el.remove(); }, 500);
+        }, wait);
+      }
+      window.hideBeerLoader = hide;
+      window.addEventListener('load', hide);
+      setTimeout(hide, 6000); // trava de segurança
+    })();
+  </script>
+
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
   <header class="site-header">
@@ -75,27 +121,27 @@
         <div>
           <ul class="contact-list">
             <li>
-              <a href="https://wa.me/5511999990000" rel="noopener" target="_blank">
+              <a href="https://wa.me/5531973265982" rel="noopener" target="_blank">
                 <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
-                <span><strong>WhatsApp</strong><span>(11) 99999-0000 — resposta em minutos</span></span>
+                <span><strong>WhatsApp</strong><span>(31) 97326-5982 — resposta em minutos</span></span>
               </a>
             </li>
             <li>
-              <a href="https://instagram.com/slurkbeer" rel="noopener" target="_blank">
+              <a href="https://instagram.com/slurkcervejaria" rel="noopener" target="_blank">
                 <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></span>
-                <span><strong>Instagram</strong><span>@slurkbeer — novidades e lançamentos</span></span>
+                <span><strong>Instagram</strong><span>@slurkcervejaria — novidades e lançamentos</span></span>
               </a>
             </li>
             <li>
-              <a href="https://facebook.com/slurkbeer" rel="noopener" target="_blank">
+              <a href="https://facebook.com/slurkcervejaria" rel="noopener" target="_blank">
                 <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></span>
-                <span><strong>Facebook</strong><span>/slurkbeer — eventos e promoções</span></span>
+                <span><strong>Facebook</strong><span>/slurkcervejaria — eventos e promoções</span></span>
               </a>
             </li>
             <li>
               <span class="contact-static">
                 <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-                <span><strong>Endereço</strong><span>Rua das Cervejas, 123 — Vila Madalena, São Paulo/SP</span></span>
+                <span><strong>Endereço</strong><span>Rua Rita Maria Miranda, 73 — Rosário, João Monlevade/MG</span></span>
               </span>
             </li>
           </ul>
@@ -138,8 +184,8 @@
 
           <div class="map-embed" style="margin-top: var(--space-6);">
             <iframe
-              title="Mapa com a localização da cervejaria slürk na Vila Madalena, São Paulo"
-              src="https://www.google.com/maps?q=Vila+Madalena,+S%C3%A3o+Paulo&output=embed"
+              title="Mapa com a localização da cervejaria slürk no bairro Rosário, João Monlevade - MG"
+              src="https://www.google.com/maps?q=Rua+Rita+Maria+Miranda,+73,+Ros%C3%A1rio,+Jo%C3%A3o+Monlevade+-+MG&output=embed"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               allowfullscreen></iframe>
@@ -156,9 +202,9 @@
           <img src="assets/img/logo-badge.png" alt="slürk" width="1380" height="656" loading="lazy">
           <p>Cervejaria artesanal independente. Pequenos lotes, grandes cervejas — desde 2025.</p>
           <div class="site-footer__social">
-            <a href="https://instagram.com/slurkbeer" aria-label="Instagram da slürk" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-            <a href="https://facebook.com/slurkbeer" aria-label="Facebook da slürk" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="https://wa.me/5511999990000" aria-label="WhatsApp da slürk" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+            <a href="https://instagram.com/slurkcervejaria" aria-label="Instagram da slürk" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://facebook.com/slurkcervejaria" aria-label="Facebook da slürk" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="https://wa.me/5531973265982" aria-label="WhatsApp da slürk" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
           </div>
         </div>
         <nav aria-label="Links do rodapé">
@@ -182,15 +228,15 @@
         <div>
           <h2>Fale com a gente</h2>
           <address>
-            Rua das Cervejas, 123 — Vila Madalena<br>
-            São Paulo/SP · CEP 05435-000<br>
-            <a href="tel:+5511999990000">(11) 99999-0000</a><br>
-            <a href="mailto:oi@slurkbeer.com.br">oi@slurkbeer.com.br</a>
+            Rua Rita Maria Miranda, 73 — Rosário<br>
+            João Monlevade/MG<br>
+            <a href="tel:+5531973265982">(31) 97326-5982</a><br>
+            <a href="mailto:oi@slurkcervejaria.com.br">oi@slurkcervejaria.com.br</a>
           </address>
         </div>
       </div>
       <div class="site-footer__bottom">
-        <p>© 2026 slürk BEER · CNPJ 00.000.000/0001-00</p>
+        <p>© 2026 slürk BEER · CNPJ 00.000.000/0001-00 · <a href="admin/">Admin</a></p>
         <p class="age-note">Aprecie com moderação. Venda proibida para menores de 18 anos.</p>
       </div>
     </div>

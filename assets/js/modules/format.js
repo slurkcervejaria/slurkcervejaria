@@ -10,11 +10,11 @@ export function formatPrice(value) {
 /** Escapa texto para interpolação segura em templates HTML. */
 export function escapeHtml(text) {
   return String(text)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 /** Máscara simples de telefone brasileiro: (11) 91234-5678. */
