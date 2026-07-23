@@ -42,7 +42,7 @@ export const DRINKS = [
     id: 'slurk-mate',
     name: 'Slürk Mate',
     tagline: 'Nossa Criação',
-    category: 'sem-alcool',
+    category: 'com-alcool',
     description: 'Mate gelado, gaseificado e do jeitinho que os mineiros gostam — refrescante, levemente doce e perigoso de tão fácil de beber.',
     image: 'assets/img/products/slurk-mate.svg',
     featured: true,
