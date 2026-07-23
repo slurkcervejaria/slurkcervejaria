@@ -513,13 +513,14 @@ button { font-family: inherit; }
 
 .product-card__footer {
   display: flex;
+  flex-wrap: wrap; /* preço largo + botão quebram linha em vez de cortar */
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3);
+  gap: var(--space-2) var(--space-3);
   margin-top: var(--space-2);
 }
-.product-card__price { font-family: var(--font-display); font-size: var(--text-xl); color: var(--brown); }
-.product-card__footer .btn { padding: 0.55rem 1rem; min-height: 44px; }
+.product-card__price { font-family: var(--font-display); font-size: var(--text-xl); color: var(--brown); white-space: nowrap; }
+.product-card__footer .btn { padding: 0.55rem 1rem; min-height: 44px; flex: 1 1 auto; }
 
 /* --------------------------------------------------------------------------
    9. Filtros do cardápio
