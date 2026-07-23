@@ -75,7 +75,7 @@ async function submitOrder(order) {
 
   // Registra na fila de pedidos lida pelo painel admin (mesmo navegador).
   try {
-    const all = JSON.parse(localStorage.getItem('slurk-orders')) ?? [];
+    const all = JSON.parse(localStorage.getItem('slurk-orders')) || [];
     all.unshift({
       id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
       status: 'novo',
@@ -130,7 +130,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 /* Observações vindas do carrinho */
-notesEl.value = sessionStorage.getItem(NOTES_KEY) ?? '';
+notesEl.value = sessionStorage.getItem(NOTES_KEY) || '';
 
 renderSummary();
 document.addEventListener('cart:changed', renderSummary);

@@ -14,8 +14,8 @@ import { groupedBarChart, hBarChart } from './charts.js';
 const COMPANY = {
   name: 'slürk BEER Ltda.',
   cnpj: '00.000.000/0001-00',
-  address: 'Rua das Cervejas, 123 — Vila Madalena, São Paulo/SP',
-  phone: '(11) 99999-0000',
+  address: 'Rua Rita Maria Miranda, 73 — Rosário, João Monlevade/MG',
+  phone: '(31) 97326-5982',
   logo: '../assets/img/logo-full.png',
 };
 
@@ -408,7 +408,7 @@ function contractText(c) {
     'RESPONSABILIDADE: o locatário responde pela guarda e integridade da chopeira, cilindro e barris durante o período, comprometendo-se a ressarcir danos, extravios ou avarias constatados no checklist de busca.',
     'DEVOLUÇÃO: os equipamentos serão recolhidos pela locadora na data prevista; barris não abertos não geram reembolso, salvo acordo prévio.',
     'CONSUMO RESPONSÁVEL: é vedado o fornecimento de bebidas alcoólicas a menores de 18 anos.',
-    'FORO: fica eleito o foro da comarca de São Paulo/SP para dirimir questões deste contrato.',
+    'FORO: fica eleito o foro da comarca de João Monlevade/MG para dirimir questões deste contrato.',
   ];
 }
 
@@ -895,12 +895,12 @@ function renderConfig(view) {
 
 function seedDemo() {
   if (db.suppliers.list().length === 0) {
-    db.suppliers.create({ name: 'Maltes & Cia', doc: '11.111.111/0001-11', phone: '(11) 4002-8922', contact: 'Carlos', notes: 'Barris de chopp' });
+    db.suppliers.create({ name: 'Maltes & Cia', doc: '11.111.111/0001-11', phone: '(31) 4002-8922', contact: 'Carlos', notes: 'Barris de chopp' });
     db.suppliers.create({ name: 'Bebidas do Vale', doc: '22.222.222/0001-22', phone: '(31) 3333-1234', contact: 'Fernanda', notes: 'Mate e água' });
   }
   if (db.clients.list().length === 0) {
-    db.clients.create({ name: 'Mariana Costa', phone: '(11) 98888-1111', doc: '123.456.789-00', email: 'mari@email.com', address: 'Rua A, 100 — Pinheiros' });
-    db.clients.create({ name: 'Rafael Torres', phone: '(11) 97777-2222', doc: '987.654.321-00', email: 'rafa@email.com', address: 'Rua B, 200 — Vila Madalena' });
+    db.clients.create({ name: 'Mariana Costa', phone: '(31) 98888-1111', doc: '123.456.789-00', email: 'mari@email.com', address: 'Rua A, 100 — Centro, João Monlevade' });
+    db.clients.create({ name: 'Rafael Torres', phone: '(31) 97777-2222', doc: '987.654.321-00', email: 'rafa@email.com', address: 'Rua B, 200 — Rosário, João Monlevade' });
   }
   if (db.purchases.list().length === 0) {
     const sup = db.suppliers.list()[0];
@@ -911,7 +911,7 @@ function seedDemo() {
   }
   if (db.orders.list().length === 0) {
     db.orders.create({
-      customer: { name: 'Mariana Costa', phone: '(11) 98888-1111', address: 'Rua A, 100 — Pinheiros' },
+      customer: { name: 'Mariana Costa', phone: '(31) 98888-1111', address: 'Rua A, 100 — Centro, João Monlevade' },
       payment: 'pix',
       notes: 'Festa sábado à noite',
       items: [
@@ -922,7 +922,7 @@ function seedDemo() {
       status: 'entregue',
     });
     db.orders.create({
-      customer: { name: 'Rafael Torres', phone: '(11) 97777-2222', address: 'Rua B, 200 — Vila Madalena' },
+      customer: { name: 'Rafael Torres', phone: '(31) 97777-2222', address: 'Rua B, 200 — Rosário, João Monlevade' },
       payment: 'cartao',
       notes: '',
       items: [{ id: 'chopp-ipa-30', name: 'Chopp IPA — Barril 30L', qty: 1, unitPrice: 600, subtotal: 600 }],

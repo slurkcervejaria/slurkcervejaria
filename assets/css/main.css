@@ -481,27 +481,35 @@ button { font-family: inherit; }
   color: var(--ink-soft);
   font-weight: 500;
 }
+/* Controle segmentado: seleção de volume, visualmente distinto do CTA */
 .size-toggle {
   display: flex;
-  gap: var(--space-2);
   margin-top: var(--space-1);
+  border: 2px solid var(--cream-dark);
+  border-radius: 999px;
+  padding: 3px;
+  background: var(--cream);
 }
 .size-btn {
   flex: 1;
-  padding: 0.5rem 0.75rem;
-  border: 2px solid var(--brown);
-  border-radius: var(--radius);
-  background: var(--white);
-  color: var(--brown);
+  padding: 0.45rem 0.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
   font: inherit;
   font-weight: 700;
   font-size: var(--text-sm);
   cursor: pointer;
-  transition: background var(--transition), color var(--transition);
-  min-height: 44px;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+  min-height: 40px;
 }
-.size-btn:hover { background: var(--yellow-soft); }
-.size-btn[aria-pressed="true"] { background: var(--brown); color: var(--cream); }
+.size-btn:hover { color: var(--brown); }
+.size-btn[aria-pressed="true"] {
+  background: var(--white);
+  color: var(--brown);
+  box-shadow: 0 1px 4px rgba(43, 26, 14, 0.2);
+}
 
 .product-card__footer {
   display: flex;

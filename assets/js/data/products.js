@@ -111,5 +111,5 @@ export const PRODUCTS = DRINKS.flatMap((drink) =>
 
 /** Busca um produto (barril) pelo id. */
 export function getProduct(id) {
-  return PRODUCTS.find((p) => p.id === id) ?? null;
+  return PRODUCTS.find((p) => p.id === id) || null;
 }

@@ -31,7 +31,7 @@ function apply() {
       !query ||
       normalize(`${d.name} ${d.tagline} ${d.description}`).includes(query);
     return inCategory && inQuery;
-  }).sort(SORTERS[state.sort] ?? SORTERS.featured);
+  }).sort(SORTERS[state.sort] || SORTERS.featured);
 
   grid.innerHTML = list.map(productCardHtml).join('');
   emptyState.hidden = list.length > 0;

@@ -50,7 +50,8 @@ itemsEl.addEventListener('click', (e) => {
   const btn = e.target.closest('[data-action]');
   if (!btn) return;
   const id = btn.closest('.cart-item').dataset.id;
-  const current = getDetailedItems().find((i) => i.id === id)?.qty ?? 0;
+  const found = getDetailedItems().find((i) => i.id === id);
+  const current = found ? found.qty : 0;
 
   if (btn.dataset.action === 'inc') setQty(id, current + 1);
   else if (btn.dataset.action === 'dec') setQty(id, current - 1);
@@ -58,7 +59,7 @@ itemsEl.addEventListener('click', (e) => {
 });
 
 /* Observações persistem para o checkout */
-notesEl.value = sessionStorage.getItem(NOTES_KEY) ?? '';
+notesEl.value = sessionStorage.getItem(NOTES_KEY) || '';
 notesEl.addEventListener('input', () => {
   sessionStorage.setItem(NOTES_KEY, notesEl.value);
 });

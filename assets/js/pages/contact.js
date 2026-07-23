@@ -1,7 +1,7 @@
 /** Contato: validação do formulário e envio via WhatsApp. */
 import { maskPhone } from '../modules/format.js';
 
-const WHATSAPP_NUMBER = '5511999990000';
+const WHATSAPP_NUMBER = '5531973265982';
 const form = document.getElementById('contact-form');
 const feedback = document.getElementById('contact-feedback');
 
