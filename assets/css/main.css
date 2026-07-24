@@ -859,6 +859,7 @@ fieldset.form-field legend {
 }
 .value-card h3 { font-size: var(--text-lg); }
 .value-card p { margin: 0; font-size: var(--text-sm); color: var(--ink-soft); }
+.value-card p + p { margin-top: var(--space-3); }
 
 .stat-strip {
   display: grid;
