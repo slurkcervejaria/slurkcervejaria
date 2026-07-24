@@ -511,15 +511,23 @@ button { font-family: inherit; }
   box-shadow: 0 1px 4px rgba(43, 26, 14, 0.2);
 }
 
+/* Preço e CTA empilhados: o preço em fonte display é largo demais para
+   dividir a linha com o botão na largura de um card da grade. */
 .product-card__footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  margin-top: var(--space-2);
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
 }
-.product-card__price { font-family: var(--font-display); font-size: var(--text-xl); color: var(--brown); }
-.product-card__footer .btn { padding: 0.55rem 1rem; min-height: 44px; }
+.product-card__price {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: 1.1;
+  color: var(--brown);
+}
+.product-card__footer .btn { width: 100%; padding: 0.55rem 1rem; min-height: 44px; }
 
 /* --------------------------------------------------------------------------
    9. Filtros do cardápio
