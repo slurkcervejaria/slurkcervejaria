@@ -850,7 +850,8 @@ fieldset.form-field legend {
 .values-grid {
   display: grid;
   gap: var(--space-6);
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  /* Colunas largas (2×2 no desktop): cada valor tem mais de um parágrafo */
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
 }
 .value-card {
   background: var(--white);
@@ -859,7 +860,8 @@ fieldset.form-field legend {
   padding: var(--space-6);
 }
 .value-card h3 { font-size: var(--text-lg); }
-.value-card p { margin: 0; font-size: var(--text-sm); color: var(--ink-soft); }
+.value-card p { margin: 0 0 var(--space-3); font-size: var(--text-sm); color: var(--ink-soft); }
+.value-card p:last-child { margin-bottom: 0; }
 
 .stat-strip {
   display: grid;
