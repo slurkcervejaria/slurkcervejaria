@@ -511,8 +511,7 @@ button { font-family: inherit; }
   box-shadow: 0 1px 4px rgba(43, 26, 14, 0.2);
 }
 
-/* Preço e CTA empilhados: o preço em fonte display é largo demais para
-   dividir a linha com o botão na largura de um card da grade. */
+/* Aviso de orçamento e CTA empilhados, ocupando a largura toda do card. */
 .product-card__footer {
   display: flex;
   flex-direction: column;
@@ -521,11 +520,11 @@ button { font-family: inherit; }
   margin-top: auto;
   padding-top: var(--space-2);
 }
-.product-card__price {
-  font-family: var(--font-display);
-  font-size: var(--text-xl);
-  line-height: 1.1;
-  color: var(--brown);
+.product-card__quote {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--ink-soft);
 }
 .product-card__footer .btn { width: 100%; padding: 0.55rem 1rem; min-height: 44px; }
 
@@ -705,7 +704,6 @@ button { font-family: inherit; }
   margin-top: var(--space-3);
   flex-wrap: wrap;
 }
-.cart-item__subtotal { font-family: var(--font-display); color: var(--brown); }
 
 .qty-stepper {
   display: inline-flex;
@@ -769,6 +767,14 @@ button { font-family: inherit; }
   color: var(--ink);
 }
 .summary-line--total strong { font-family: var(--font-display); color: var(--brown); font-size: var(--text-xl); }
+/* Explica ao cliente por que não há total: o valor vem no orçamento. */
+.summary-note {
+  border-top: 2px dashed var(--cream-dark);
+  margin: var(--space-2) 0 var(--space-4);
+  padding-top: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
 
 .cart-empty {
   text-align: center;

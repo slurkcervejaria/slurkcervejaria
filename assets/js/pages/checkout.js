@@ -1,17 +1,16 @@
 /**
- * Checkout: resumo do pedido, validação do formulário e finalização.
+ * Checkout: resumo do pedido, validação do formulário e envio via WhatsApp.
  *
- * A finalização hoje monta o pedido, salva em sessionStorage e redireciona
- * para a confirmação (com envio opcional via WhatsApp). O objeto `order`
- * já tem o formato pronto para ser enviado a um backend/gateway de
- * pagamento no futuro — basta trocar a função `submitOrder`.
+ * O site não exibe preços. O cliente monta o carrinho, informa os dados de
+ * entrega e a finalização abre o WhatsApp da cervejaria com a mensagem do
+ * pedido já pronta; o orçamento é respondido na conversa.
  */
 import { getDetailedItems, getTotal, clearCart } from '../modules/cart.js';
-import { formatPrice, escapeHtml, maskPhone } from '../modules/format.js';
+import { escapeHtml, maskPhone } from '../modules/format.js';
+import { orderWhatsappUrl } from '../modules/whatsapp.js';
 
 const form = document.getElementById('checkout-form');
 const summaryList = document.getElementById('checkout-items');
-const totalEl = document.getElementById('checkout-total');
 const emptyEl = document.getElementById('checkout-empty');
 const layoutEl = document.getElementById('checkout-layout');
 const notesEl = document.getElementById('field-notes');
@@ -27,12 +26,8 @@ function renderSummary() {
   if (isEmpty) return;
 
   summaryList.innerHTML = items
-    .map(
-      (i) =>
-        `<li><span>${i.qty}× ${escapeHtml(i.product.name)}</span><strong>${formatPrice(i.subtotal)}</strong></li>`,
-    )
+    .map((i) => `<li><span>${i.qty}× ${escapeHtml(i.product.name)}</span></li>`)
     .join('');
-  totalEl.textContent = formatPrice(getTotal());
 }
 
 /* Validação acessível: mensagens por campo + foco no primeiro erro */
@@ -68,12 +63,17 @@ phoneInput.addEventListener('input', () => {
   phoneInput.value = maskPhone(phoneInput.value);
 });
 
-/** Ponto único de integração futura com backend/gateway de pagamento. */
-async function submitOrder(order) {
-  // await fetch('/api/orders', { method: 'POST', body: JSON.stringify(order) })
-  sessionStorage.setItem(ORDER_KEY, JSON.stringify(order));
-
-  // Registra na fila de pedidos lida pelo painel admin (mesmo navegador).
+/**
+ * Guarda o pedido para a página de confirmação e para a fila do painel admin
+ * (mesmo navegador). Os valores vêm do catálogo e nunca são exibidos ao
+ * cliente — servem só para o controle interno da cervejaria.
+ */
+function storeOrder(order) {
+  try {
+    sessionStorage.setItem(ORDER_KEY, JSON.stringify(order));
+  } catch {
+    /* sem storage: a confirmação mostra o estado vazio */
+  }
   try {
     const all = JSON.parse(localStorage.getItem('slurk-orders')) || [];
     all.unshift({
@@ -87,7 +87,7 @@ async function submitOrder(order) {
   }
 }
 
-form.addEventListener('submit', async (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const inputs = [...form.querySelectorAll('input[id], textarea[id]')];
@@ -105,9 +105,10 @@ form.addEventListener('submit', async (e) => {
     customer: {
       name: form.elements['name'].value.trim(),
       phone: form.elements['phone'].value.trim(),
+      cep: form.elements['cep'].value.trim(),
       address: form.elements['address'].value.trim(),
     },
-    payment: form.elements['payment'].value,
+    payment: 'a combinar',
     notes: form.elements['notes'].value.trim(),
     items: items.map((i) => ({
       id: i.id,
@@ -119,11 +120,11 @@ form.addEventListener('submit', async (e) => {
     total: getTotal(),
   };
 
-  const submitBtn = form.querySelector('[type="submit"]');
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Enviando pedido…';
+  /* Abre o WhatsApp ainda dentro do gesto do usuário — de forma assíncrona
+     o navegador trataria como popup e bloquearia a janela. */
+  window.open(orderWhatsappUrl(order), '_blank', 'noopener');
 
-  await submitOrder(order);
+  storeOrder(order);
   clearCart();
   sessionStorage.removeItem(NOTES_KEY);
   location.href = 'obrigado.html';

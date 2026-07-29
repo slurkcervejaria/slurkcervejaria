@@ -11,11 +11,9 @@ const resultsCount = document.getElementById('results-count');
 
 const state = { query: '', category: 'all', sort: 'featured' };
 
-const minPrice = (d) => Math.min(...d.variants.map((v) => v.price));
+/* Sem ordenação por preço: o site não exibe valores, eles saem no orçamento. */
 const SORTERS = {
   featured: (a, b) => Number(b.featured) - Number(a.featured),
-  'price-asc': (a, b) => minPrice(a) - minPrice(b),
-  'price-desc': (a, b) => minPrice(b) - minPrice(a),
   name: (a, b) => a.name.localeCompare(b.name, 'pt-BR'),
 };
 
