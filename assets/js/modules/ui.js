@@ -1,5 +1,5 @@
 /** Componentes de interface compartilhados: toast, reveal on scroll, card de produto. */
-import { formatPrice, escapeHtml } from './format.js';
+import { escapeHtml } from './format.js';
 import { addItem } from './cart.js';
 
 let toastTimer;
@@ -53,12 +53,12 @@ export function productCardHtml(drink) {
           ${drink.variants
             .map(
               (v, i) =>
-                `<button type="button" class="size-btn" aria-pressed="${i === 0}" data-variant="${v.id}" data-price="${v.price}">Barril ${escapeHtml(v.volume)}</button>`,
+                `<button type="button" class="size-btn" aria-pressed="${i === 0}" data-variant="${v.id}">Barril ${escapeHtml(v.volume)}</button>`,
             )
             .join('')}
         </div>
         <div class="product-card__footer">
-          <span class="product-card__price" aria-live="polite">${formatPrice(first.price)}</span>
+          <p class="product-card__quote">Valor sob consulta no WhatsApp</p>
           <button type="button" class="btn btn--yellow" data-add-to-cart="${first.id}">
             Adicionar
             <span class="visually-hidden">${escapeHtml(drink.name)} ao carrinho</span>
@@ -75,7 +75,6 @@ export function initSizeToggles() {
     if (!btn) return;
     const card = btn.closest('.product-card');
     card.querySelectorAll('.size-btn').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-    card.querySelector('.product-card__price').textContent = formatPrice(Number(btn.dataset.price));
     card.querySelector('[data-add-to-cart]').dataset.addToCart = btn.dataset.variant;
   });
 }

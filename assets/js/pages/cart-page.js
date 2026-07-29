@@ -1,17 +1,19 @@
-/** Página do carrinho: lista de itens, quantidades, observações e resumo. */
-import { getDetailedItems, setQty, removeItem, getTotal } from '../modules/cart.js';
-import { formatPrice, escapeHtml } from '../modules/format.js';
+/**
+ * Página do carrinho: lista de itens, quantidades, observações e resumo.
+ * Sem valores — o orçamento é enviado pela cervejaria no WhatsApp.
+ */
+import { getDetailedItems, setQty, removeItem, getCount } from '../modules/cart.js';
+import { escapeHtml } from '../modules/format.js';
 
 const itemsEl = document.getElementById('cart-items');
 const layoutEl = document.getElementById('cart-layout');
 const emptyEl = document.getElementById('cart-empty');
-const subtotalEl = document.getElementById('cart-subtotal');
-const totalEl = document.getElementById('cart-total');
+const countEl = document.getElementById('cart-count-summary');
 const notesEl = document.getElementById('cart-notes');
 
 const NOTES_KEY = 'slurk-cart-notes';
 
-function itemHtml({ product, qty, subtotal }) {
+function itemHtml({ product, qty }) {
   return `
     <article class="cart-item" data-id="${product.id}">
       <div class="cart-item__media">
@@ -19,14 +21,13 @@ function itemHtml({ product, qty, subtotal }) {
       </div>
       <div>
         <h2 class="cart-item__name">${escapeHtml(product.name)}</h2>
-        <p class="cart-item__unit">${escapeHtml(product.volume)} · ${formatPrice(product.price)} cada</p>
+        <p class="cart-item__unit">${escapeHtml(product.style)}</p>
         <div class="cart-item__row">
           <div class="qty-stepper">
             <button type="button" data-action="dec" aria-label="Diminuir quantidade de ${escapeHtml(product.name)}">−</button>
             <output aria-live="polite">${qty}</output>
             <button type="button" data-action="inc" aria-label="Aumentar quantidade de ${escapeHtml(product.name)}">+</button>
           </div>
-          <span class="cart-item__subtotal">${formatPrice(subtotal)}</span>
           <button type="button" class="link-remove" data-action="remove">Remover</button>
         </div>
       </div>
@@ -41,9 +42,8 @@ function render() {
   if (isEmpty) return;
 
   itemsEl.innerHTML = items.map(itemHtml).join('');
-  const total = getTotal();
-  subtotalEl.textContent = formatPrice(total);
-  totalEl.textContent = formatPrice(total);
+  const barris = getCount();
+  countEl.textContent = `${barris} ${barris === 1 ? 'barril' : 'barris'}`;
 }
 
 itemsEl.addEventListener('click', (e) => {
